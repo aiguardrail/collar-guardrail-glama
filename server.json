@@ -1,9 +1,11 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.aiguardrail/backend",
-  "description": "Deterministic pre-trade risk checks for autonomous AI trading agents.",
-  "version": "1.0.3",
+  "description": "Deterministic pre-trade risk checks for autonomous AI trading agents on Robinhood Chain. Returns allow/warn/deny with reasons, risk score, and a tamper-evident SHA-256 audit hash.",
+  "version": "1.1.0",
   "homepage": "https://collarguardrail.com",
+  "repository": "https://github.com/aiguardrail/backend",
+  "license": "MIT",
   "remotes": [
     {
       "type": "streamable-http",
