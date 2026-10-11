@@ -1,4 +1,11 @@
 {
   "$schema": "https://glama.ai/mcp/schemas/server.json",
-  "maintainers": ["aiguardrail"]
+  "maintainers": ["aiguardrail"],
+  "name": "Collar Guardrail",
+  "description": "Deterministic pre-trade risk checks for autonomous AI trading agents on Robinhood Chain. Returns allow/warn/deny with reasons, risk score, and a tamper-evident audit hash.",
+  "category": "finance",
+  "tags": ["trading", "risk", "agents", "robinhood-chain", "defi", "guardrail"],
+  "homepage": "https://collarguardrail.com",
+  "repository": "https://github.com/aiguardrail/collar-guardrail-glama",
+  "license": "MIT"
 }
