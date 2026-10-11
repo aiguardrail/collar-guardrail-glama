@@ -1,0 +1,48 @@
+name: Validate Manifests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate glama.json
+        run: |
+          python3 -c "
+          import json
+          with open('glama.json') as f:
+              data = json.load(f)
+          print('glama.json OK:', list(data.keys()))
+          "
+
+      - name: Validate server.json
+        run: |
+          python3 -c "
+          import json
+          with open('server.json') as f:
+              data = json.load(f)
+          print('server.json OK')
+          print('  name:', data.get('name'))
+          print('  version:', data.get('version'))
+          print('  endpoint:', data['remotes'][0]['url'])
+          assert data.get('name'), 'missing name'
+          assert data.get('version'), 'missing version'
+          assert data.get('remotes'), 'missing remotes'
+          "
+
+      - name: Check MCP endpoint
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X POST https://api.collarguardrail.com/mcp-http/mcp \
+            -H "Content-Type: application/json" \
+            -H "Accept: application/json, text/event-stream" \
+            -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"ci","version":"1.0"}}}')
+          echo "HTTP: $STATUS"
+          test "$STATUS" = "200"
