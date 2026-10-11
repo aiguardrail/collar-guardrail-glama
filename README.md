@@ -13,20 +13,21 @@ directory verification.
 | :--- | :--- |
 | **URL** | `https://api.collarguardrail.com/mcp-http/mcp` |
 | **Transport** | Streamable HTTP |
-| **Protocol** | MCP 2025-06-18 |
+| **Protocol** | MCP 2024-11-05 |
 | **Authentication** | None required (fixed Tier 1) |
 
 ## Available Tools
 
 - `evaluate_trade` — pre-trade risk check (allow / warn / deny)
+- `evaluate_trade_paid` — same, gated by x402 (Tier 2, $25k ceiling)
 - `check_token_safety` — honeypot detection (auto-DENY on danger)
 - `simulate_balance` — ERC-20 balance simulation
-- `get_supported_assets` — official asset registry
-- `verify_audit_trail` — hash-chain verification
+- `get_supported_assets` — official asset registry (197 assets)
+- `verify_audit_trail` — SHA-256 hash-chain verification
 
 ## Discovery Files
 
-- MCP Server Card: https://api.collarguardrail.com/.well-known/mcp/server-card.json
+- MCP Server Card: https://api.collarguardrail.com/.well-known/mcp-server-card.json
 - Agent Card: https://api.collarguardrail.com/.well-known/agent-card.json
 - x402: https://api.collarguardrail.com/.well-known/x402.json
 
@@ -38,7 +39,8 @@ directory verification.
 ## Registry Listings
 
 - Official MCP Registry: `io.github.aiguardrail/backend`
-- PyPI: [langchain-collar](https://pypi.org/project/langchain-collar/)
+- PyPI (LangChain SDK): [langchain-collar](https://pypi.org/project/langchain-collar/)
+- GitHub (LangChain SDK): [aiguardrail/collar-langchain](https://github.com/aiguardrail/collar-langchain)
 
 ## License
 
